@@ -1,7 +1,9 @@
 package com.kurczyna
 
+import com.kurczyna.extension.EmptyH2
 import spock.lang.Specification
 
+@EmptyH2
 class MyFirstSpec extends Specification {
 
     def "should add two numbers"() {
@@ -65,6 +67,7 @@ class MyFirstSpec extends Specification {
         // objects
         def o1
         def o2 = new Expando(name: 'groovy')
+
         !o1
         assert o2
 

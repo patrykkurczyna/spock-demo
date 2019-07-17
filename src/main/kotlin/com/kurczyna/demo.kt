@@ -44,3 +44,15 @@ class Booking(private val listener: Listener) {
     }
 }
 
+enum class UserState {
+    VERIFIED, NEW
+}
+
+interface UserRepository {
+    fun getUserState(id: String): UserState
+}
+
+class UserService(private val repository: UserRepository) {
+    fun isUserVerified(id: String) = repository.getUserState(id) == UserState.VERIFIED
+}
+
