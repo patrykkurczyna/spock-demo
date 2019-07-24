@@ -1,0 +1,45 @@
+apply plugin: 'kotlin'
+apply plugin: "groovy"
+
+version = "1.0-SNAPSHOT"
+description = "spock-demo"
+
+// Spock works with Java 1.7 and above
+sourceCompatibility = 1.7
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.40"
+    }
+}
+
+repositories {
+    // Spock releases are available from Maven Central
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib"
+    // mandatory dependencies for using Spock
+    compile "org.codehaus.groovy:groovy-all:2.5.7"
+    testCompile "org.spockframework:spock-core:1.3-groovy-2.5"
+
+    // optional dependencies for using Spock
+    testCompile "org.hamcrest:hamcrest-core:1.3" // only necessary if Hamcrest matchers are used
+    testRuntime "net.bytebuddy:byte-buddy:1.9.3" // allows mocking of classes (in addition to interfaces)
+    testRuntime "org.objenesis:objenesis:2.6"    // allows mocking of classes without default constructor (together with CGLIB)
+
+    // dependencies used by examples in this project
+    testRuntime "com.h2database:h2:1.4.197"
+}
+
+// show tests execution summary when running from command line
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

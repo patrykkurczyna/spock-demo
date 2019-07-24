@@ -1,5 +1,7 @@
 /target/
 .classpath
+.gradle
+.gradletasknamecache
 .project
 .settings
 .idea/
